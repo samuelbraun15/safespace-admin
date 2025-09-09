@@ -1,3 +1,5 @@
+// File path: app/(admin)/referral-intake/page.js
+
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -11,19 +13,12 @@ const referrals = [
 ];
 
 // --- ICONS ---
-const PlusIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
-    </svg>
-);
-const CloseIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-);
-
+const PlusIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> );
+const CloseIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> );
 
 // --- MODAL COMPONENTS ---
 const AcceptReferralModal = ({ referral, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-gray-800">Accept Referral for {referral.clientName}</h2>
@@ -32,7 +27,7 @@ const AcceptReferralModal = ({ referral, onClose }) => (
             <form className="space-y-4">
                 <div>
                     <label htmlFor="assignTherapist" className="block text-sm font-medium text-gray-700">Assign to Therapist</label>
-                    <select id="assignTherapist" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg">
+                    <select id="assignTherapist" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg bg-white">
                         <option>Select Therapist...</option>
                         <option>Dr. Emily Carter</option>
                         <option>Dr. Ben Adams</option>
@@ -40,7 +35,7 @@ const AcceptReferralModal = ({ referral, onClose }) => (
                 </div>
                  <div>
                     <label htmlFor="priority" className="block text-sm font-medium text-gray-700">Priority Level</label>
-                    <select id="priority" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg">
+                    <select id="priority" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg bg-white">
                         <option>Select Priority...</option>
                         <option>High</option>
                         <option>Medium</option>
@@ -61,7 +56,7 @@ const AcceptReferralModal = ({ referral, onClose }) => (
 );
 
 const DeclineReferralModal = ({ referral, onClose }) => (
-     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-gray-800">Decline Referral for {referral.clientName}</h2>
@@ -70,7 +65,7 @@ const DeclineReferralModal = ({ referral, onClose }) => (
             <form className="space-y-4">
                 <div>
                     <label htmlFor="declineReason" className="block text-sm font-medium text-gray-700">Reason for Decline</label>
-                    <select id="declineReason" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg">
+                    <select id="declineReason" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg bg-white">
                         <option>Select Reason...</option>
                         <option>Outside of scope</option>
                         <option>Client not reachable</option>
@@ -90,7 +85,6 @@ const DeclineReferralModal = ({ referral, onClose }) => (
         </div>
     </div>
 );
-
 
 export default function ReferralIntakePage() {
     const [modal, setModal] = useState({ type: null, data: null }); // type can be 'accept' or 'decline'
@@ -143,3 +137,4 @@ export default function ReferralIntakePage() {
         </div>
     );
 }
+
