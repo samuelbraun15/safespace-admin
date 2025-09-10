@@ -4,33 +4,11 @@
 import React, { useState } from 'react';
 
 // --- ICONS ---
-/**
- * UserIcon component.
- * Renders an SVG icon representing a user.
- * @returns {JSX.Element} An SVG icon.
- */
 const UserIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> );
-/**
- * UploadIcon component.
- * Renders an SVG icon representing an upload action.
- * @returns {JSX.Element} An SVG icon.
- */
 const UploadIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> );
-/**
- * FileIcon component.
- * Renders an SVG icon representing a file.
- * @returns {JSX.Element} An SVG icon.
- */
 const FileIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg> );
 
 // --- SUCCESS MODAL ---
-/**
- * SubmissionSuccessModal component.
- * A modal that informs the user that the referral has been submitted successfully.
- * @param {object} props - The component props.
- * @param {function} props.onClose - Function to call when the modal is closed.
- * @returns {JSX.Element} A modal dialog for submission success.
- */
 const SubmissionSuccessModal = ({ onClose }) => (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
         <div className="bg-white p-8 rounded-2xl shadow-xl text-center max-w-sm w-full">
@@ -41,40 +19,21 @@ const SubmissionSuccessModal = ({ onClose }) => (
     </div>
 );
 
-/**
- * CreateReferralPage component.
- * Provides a form for users to create a new referral, either by uploading a document
- * or manually inputting client and referral details.
- * @returns {JSX.Element} The create referral page.
- */
 export default function CreateReferralPage() {
     const [fileName, setFileName] = useState(null);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    /**
-     * Handles the change event for the file input.
-     * Updates the state with the name of the selected file.
-     * @param {Event} e - The event object from the file input.
-     */
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             setFileName(e.target.files[0].name);
         }
     };
 
-    /**
-     * Handles the form submission.
-     * Prevents default form submission and displays the success modal.
-     * @param {Event} e - The event object from the form submission.
-     */
     const handleSubmit = (e) => {
         e.preventDefault();
         setShowSuccessModal(true);
     };
-
-    /**
-     * Clears the form fields and resets the file name state.
-     */
+    
     const handleClearForm = () => {
         setFileName(null);
         document.getElementById("referral-form").reset();
@@ -140,5 +99,4 @@ export default function CreateReferralPage() {
         </>
     );
 }
-
 

@@ -4,34 +4,11 @@
 import React, { useState } from 'react';
 
 // --- ICONS ---
-/**
- * ServerIcon component.
- * Renders an SVG icon representing a server.
- * @returns {JSX.Element} An SVG icon.
- */
 const ServerIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg> );
-/**
- * DatabaseIcon component.
- * Renders an SVG icon representing a database.
- * @returns {JSX.Element} An SVG icon.
- */
 const DatabaseIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg> );
-/**
- * CloseIcon component.
- * Renders an SVG icon for a close button.
- * @returns {JSX.Element} An SVG icon.
- */
 const CloseIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500 hover:text-gray-800"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> );
 
 // --- MOCK DATA & COMPONENTS ---
-/**
- * StatCard component.
- * Displays a single statistic with a title and a value.
- * @param {object} props - The component props.
- * @param {string} props.title - The title of the statistic.
- * @param {string} props.value - The value of the statistic.
- * @returns {JSX.Element} A card displaying the statistic.
- */
 const StatCard = ({ title, value }) => (
     <div className="bg-white p-6 rounded-2xl shadow-md text-center">
         <p className="text-gray-500 text-sm">{title}</p>
@@ -39,17 +16,6 @@ const StatCard = ({ title, value }) => (
     </div>
 );
 
-/**
- * HealthCard component.
- * Displays the health status of a system component.
- * @param {object} props - The component props.
- * @param {string} props.title - The title of the component (e.g., "Server Status").
- * @param {string} props.status - The current status (e.g., "Online", "Healthy").
- * @param {string} props.value - Additional value or metric (e.g., "99.9% uptime").
- * @param {string} [props.statusColor='text-green-500'] - Tailwind CSS class for status text color.
- * @param {JSX.Element} props.icon - An icon component to display next to the title.
- * @returns {JSX.Element} A card displaying the health status.
- */
 const HealthCard = ({ title, status, value, statusColor = 'text-green-500', icon }) => (
     <div className="bg-white p-6 rounded-2xl shadow-sm flex-1">
         <div className="flex justify-between items-start">
@@ -61,15 +27,6 @@ const HealthCard = ({ title, status, value, statusColor = 'text-green-500', icon
     </div>
 );
 
-/**
- * ActivityItem component.
- * Displays a single recent activity entry.
- * @param {object} props - The component props.
- * @param {string} props.title - The title of the activity (e.g., "User Created").
- * @param {string} props.description - A brief description of the activity.
- * @param {string} props.time - The timestamp of the activity.
- * @returns {JSX.Element} An item displaying the activity details.
- */
 const ActivityItem = ({ title, description, time }) => (
     <div className="bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
         <div>
@@ -81,25 +38,7 @@ const ActivityItem = ({ title, description, time }) => (
     </div>
 );
 
-/**
- * DetailedMetricsModal component.
- * A modal that displays detailed system metrics.
- * @param {object} props - The component props.
- * @param {function} props.onClose - Function to call when the modal is closed.
- * @returns {JSX.Element} A modal dialog for detailed metrics.
- */
 const DetailedMetricsModal = ({ onClose }) => {
-    /**
-     * MetricBar component (nested within DetailedMetricsModal).
-     * Displays a single metric with its label, value, threshold, percentage, and status.
-     * @param {object} props - The component props.
-     * @param {string} props.label - The label for the metric (e.g., "CPU Usage").
-     * @param {string} props.value - The current value of the metric (e.g., "45%").
-     * @param {string} props.threshold - The threshold for the metric (e.g., "80%").
-     * @param {number} props.percentage - The percentage of the threshold reached, for the progress bar.
-     * @param {string} [props.status="normal"] - The status of the metric (e.g., "normal", "alert").
-     * @returns {JSX.Element} A bar displaying a single metric.
-     */
     const MetricBar = ({ label, value, threshold, percentage, status = "normal" }) => (
         <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
             <div className="flex justify-between items-center mb-1">
@@ -142,13 +81,6 @@ const fullAuditLogData = [
     { id: 5, action: "Password Change", user: "user@safespace.com", timestamp: "2025-08-09 18:00:00", details: "User changed their password." },
 ];
 
-/**
- * AuditLogModal component.
- * A modal that displays a full audit log of system activities.
- * @param {object} props - The component props.
- * @param {function} props.onClose - Function to call when the modal is closed.
- * @returns {JSX.Element} A modal dialog for the audit log.
- */
 const AuditLogModal = ({ onClose }) => {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
@@ -172,12 +104,6 @@ const AuditLogModal = ({ onClose }) => {
 };
 
 
-/**
- * OverviewPage component.
- * The main page for the admin overview, displaying system statistics, health, and recent activities.
- * Manages the visibility of detailed metrics and audit log modals.
- * @returns {JSX.Element} The overview page.
- */
 export default function OverviewPage() {
     const [showMetricsModal, setShowMetricsModal] = useState(false);
     const [showAuditLogModal, setShowAuditLogModal] = useState(false);

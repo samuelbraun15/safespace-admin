@@ -13,28 +13,10 @@ const referrals = [
 ];
 
 // --- ICONS ---
-/**
- * PlusIcon component.
- * Renders an SVG icon of a plus sign.
- * @returns {JSX.Element} An SVG icon.
- */
 const PlusIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> );
-/**
- * CloseIcon component.
- * Renders an SVG icon for a close button.
- * @returns {JSX.Element} An SVG icon.
- */
 const CloseIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> );
 
 // --- MODAL COMPONENTS ---
-/**
- * AcceptReferralModal component.
- * A modal for accepting a referral, allowing the user to assign a therapist and set a priority level.
- * @param {object} props - The component props.
- * @param {object} props.referral - The referral object to be accepted.
- * @param {function} props.onClose - Function to call when the modal is closed.
- * @returns {JSX.Element} A modal dialog for accepting a referral.
- */
 const AcceptReferralModal = ({ referral, onClose }) => (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
@@ -73,8 +55,9 @@ const AcceptReferralModal = ({ referral, onClose }) => (
     </div>
 );
 
+<<<<<<< HEAD
 
-
+=======
 const DeclineReferralModal = ({ referral, onClose }) => (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
@@ -105,26 +88,12 @@ const DeclineReferralModal = ({ referral, onClose }) => (
         </div>
     </div>
 );
+>>>>>>> parent of fdde699 (added comments and fixed login page)
 
-/**
- * ReferralIntakePage component.
- * Displays a list of new referrals in a table and provides options to accept or decline them
- * via modal dialogs. Also includes a link to create a new referral.
- * @returns {JSX.Element} The referral intake page.
- */
 export default function ReferralIntakePage() {
     const [modal, setModal] = useState({ type: null, data: null }); // type can be 'accept' or 'decline'
 
-    /**
-     * Opens a modal for accepting or declining a referral.
-     * @param {string} type - The type of modal to open ('accept' or 'decline').
-     * @param {object} referral - The referral data to pass to the modal.
-     */
     const openModal = (type, referral) => setModal({ type, data: referral });
-
-    /**
-     * Closes any open modal.
-     */
     const closeModal = () => setModal({ type: null, data: null });
 
     return (
@@ -172,5 +141,4 @@ export default function ReferralIntakePage() {
         </div>
     );
 }
-
 

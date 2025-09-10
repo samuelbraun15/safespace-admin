@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // --- SVG ICON COMPONENTS ---
-// Defines a React component for the application's logo, rendered as an SVG.
 const LogoIcon = () => (
   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0Z" fill="url(#paint0_linear_1_2)"/>
@@ -18,48 +17,37 @@ const LogoIcon = () => (
   </svg>
 );
 
-// Defines the main LoginPage component.
+
 export default function LoginPage() {
-  // State to control whether the login form is shown or just the initial "ADMIN" screen.
   const [showForm, setShowForm] = useState(false);
-  // Initialize the router for navigation.
   const router = useRouter();
 
-  // Handles the login action.
-  // In a real application, this would involve authenticating user credentials.
-  // For this mock setup, it simply navigates to the overview dashboard.
   const handleLogin = () => {
+    // In a real app, you'd handle authentication here.
+    // For now, we'll just navigate to the dashboard.
     router.push('/overview');
   };
 
   return (
-    // Main container for the login page, centering its content.
     <div className="flex items-center justify-center min-h-screen bg-[#E0EBE8] font-sans">
-      {/* The central white box containing the login elements. */}
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-2xl">
-        {/* Conditional rendering: If showForm is false, display the initial "ADMIN" screen. */}
         {!showForm ? (
-          // Clicking this div transitions to the login form.
           <div className="text-center cursor-pointer" onClick={() => setShowForm(true)}>
              <div className="flex justify-center items-center mb-6">
-                <LogoIcon /> {/* Displays the application logo. */}
+                <LogoIcon />
             </div>
-            {/* Large "ADMIN" heading. */}
             <h1 className="text-6xl font-bold text-gray-800 tracking-tighter">ADMIN</h1>
           </div>
         ) : (
-          // If showForm is true, display the login form..
           <div>
             <div className="flex justify-center items-center mb-4">
-                <LogoIcon /> {/* Displays the application logo. */}
+                <LogoIcon />
             </div>
             <div className="text-center mb-8">
-                {/* Application title and subtitle. */}
                 <h2 className="text-3xl font-bold text-gray-900">SafeSpace</h2>
                 <p className="text-gray-500">Mental Health Support Platform</p>
             </div>
             <div className="mt-8">
-                {/* Sign In button. Triggers the handleLogin function when clicked. */}
                 <button
                   type="button"
                   onClick={handleLogin}
@@ -71,11 +59,9 @@ export default function LoginPage() {
           </div>
         )}
       </div>
-      {/* Footer displayed at the bottom of the page. */}
       <footer className="absolute bottom-0 w-full text-center p-4 text-gray-600 text-sm">
         2025 SafeSapce. All Right Reserved
       </footer>
     </div>
   );
-}
-
+};
