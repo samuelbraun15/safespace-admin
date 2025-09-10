@@ -1,7 +1,7 @@
 // File path: app/(admin)/users/page.js
 
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -12,7 +12,7 @@ const SettingsIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="20" 
 const CloseIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500 hover:text-gray-800"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> );
 
 // --- MOCK DATA ---
-const allUsers = [
+const initialUsers = [
     { id: 1, firstName: 'Emerson', lastName: 'Pascual', email: 'emer.pascual@gmail.com', lastLogin: '2025-08-11 05:00 PM', createdAt: '2025-01-01 09:00 AM', status: 'Active' },
     { id: 2, firstName: 'Freddie', lastName: 'Aguilar', email: 'fred.aguilar@gmail.com', lastLogin: '2025-08-11 05:00 PM', createdAt: '2025-01-02 09:00 AM', status: 'Active' },
     { id: 3, firstName: 'Gerard', lastName: 'Chua', email: 'gerard.chua@gmail.com', lastLogin: '2025-08-11 05:00 PM', createdAt: '2025-01-03 09:00 AM', status: 'Active' },
@@ -50,12 +50,35 @@ export default function UsersPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeActionMenu, setActiveActionMenu] = useState(null);
     const [modal, setModal] = useState({ type: null, data: null });
+    const [users, setUsers] = useState([]);
     const router = useRouter();
+
+    // Load users from localStorage on component mount and when router changes (e.g., after refresh)
+    React.useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedUsers = localStorage.getItem('mockUsers');
+            let parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
+            
+            // If localStorage is empty or contains an empty array, initialize with initialUsers
+            if (!parsedUsers || parsedUsers.length === 0) {
+                parsedUsers = initialUsers;
+                localStorage.setItem('mockUsers', JSON.stringify(parsedUsers)); // Save initial users to localStorage
+            }
+            setUsers(parsedUsers);
+        }
+    }, [router]); // Dependency on router to re-load on refresh/navigation
+
+    // Update localStorage whenever users state changes
+    React.useEffect(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('mockUsers', JSON.stringify(users));
+        }
+    }, [users]);
 
     // --- REVISED SEARCH LOGIC ---
     // This now calculates the filtered list directly on each render,
     // which is a more robust way to handle filtering.
-    const filteredUsers = allUsers.filter(user => {
+    const filteredUsers = users.filter(user => { // Use 'users' state here
         const lowercasedQuery = searchQuery.toLowerCase();
         return (
             user.firstName.toLowerCase().includes(lowercasedQuery) ||
@@ -74,7 +97,7 @@ export default function UsersPage() {
     };
 
     const handleConfirmDelete = () => {
-        // Here you would add logic to delete the user from your database
+        setUsers(users.filter(user => user.id !== modal.data.id)); // Filter out the deleted user
         setModal({ type: 'delete-success', data: modal.data });
     };
 

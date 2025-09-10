@@ -73,9 +73,40 @@ const DetailedMetricsModal = ({ onClose }) => {
     );
 };
 
+const fullAuditLogData = [
+    { id: 1, action: "User Login", user: "admin@safespace.com", timestamp: "2025-08-11 14:30:00", details: "Successful login from IP: 192.168.1.100" },
+    { id: 2, action: "User Created", user: "admin@safespace.com", timestamp: "2025-08-11 14:35:15", details: "New user 'John Doe' (john.doe@example.com) created." },
+    { id: 3, action: "Client Profile Access", user: "therapist@safespace.com", timestamp: "2025-08-11 11:30:34", details: "Accessed client profile for Emma Wilson." },
+    { id: 4, action: "Data Export", user: "admin@safespace.com", timestamp: "2025-08-10 09:00:00", details: "Exported user data to CSV." },
+    { id: 5, action: "Password Change", user: "user@safespace.com", timestamp: "2025-08-09 18:00:00", details: "User changed their password." },
+];
+
+const AuditLogModal = ({ onClose }) => {
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+            <div className="bg-gray-50 p-6 rounded-2xl shadow-xl w-full max-w-3xl h-3/4 overflow-y-auto">
+                 <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-xl font-bold text-gray-800">Full Audit Log</h2>
+                    <button onClick={onClose}><CloseIcon /></button>
+                </div>
+                <div className="space-y-4">
+                    {fullAuditLogData.map(log => (
+                        <div key={log.id} className="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                            <p className="font-semibold text-gray-800">{log.action} by {log.user}</p>
+                            <p className="text-sm text-gray-500">{log.details}</p>
+                            <p className="text-xs text-gray-400 mt-1">{log.timestamp}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
 
 export default function OverviewPage() {
     const [showMetricsModal, setShowMetricsModal] = useState(false);
+    const [showAuditLogModal, setShowAuditLogModal] = useState(false);
 
     return (
         <>
@@ -112,12 +143,15 @@ export default function OverviewPage() {
                         <ActivityItem title="User Created" description="Created a new support worker" time="2025-08-11 14:30:00" />
                         <ActivityItem title="Client Access" description="Access client profile for Emma Wilson" time="2025-08-11 11:30:34" />
                     </div>
-                    <button className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition-colors">View Full Audit Log</button>
+                    <button 
+                        onClick={() => setShowAuditLogModal(true)}
+                        className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition-colors"
+                    >View Full Audit Log</button>
                 </div>
             </div>
 
             {showMetricsModal && <DetailedMetricsModal onClose={() => setShowMetricsModal(false)} />}
+            {showAuditLogModal && <AuditLogModal onClose={() => setShowAuditLogModal(false)} />}
         </>
     );
 }
-
