@@ -1,4 +1,8 @@
+'use client';
+
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 // --- SVG ICONS ---
 const LogoIcon = () => (
@@ -24,23 +28,59 @@ const SignOutIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
 );
 
+const tabs = [
+  { name: 'Overview', href: '/dashboard' },
+  { name: 'Referral', href: '/referral-intake' },
+  { name: 'Clients', href: '/users' },
+  { name: 'Schedule', href: '/Schedule' },
+  { name: 'Notes', href: '/Notes' },
+  { name: 'Crisis', href: '/Crisis' },
+  { name: 'Reports', href: '/Reports' }
+];
 
 export default function AdminHeader() {
+    const pathname = usePathname();
+
     return (
-        <header className="bg-white shadow-sm p-4 flex justify-between items-center">
-            <div className="flex items-center gap-4">
-                <LogoIcon />
-                <h1 className="text-xl font-semibold text-gray-800">SafeSpace</h1>
+        <header className="bg-white shadow-sm p-4">
+            <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-4">
+                    <LogoIcon />
+                    <h1 className="text-xl font-semibold text-gray-800">SafeSpace</h1>
+                </div>
+                <div className="flex items-center gap-6 text-gray-600">
+                    <button className="hover:text-gray-900 transition-colors"><RefreshIcon /></button>
+                    <button className="hover:text-gray-900 transition-colors"><SettingsIcon /></button>
+                    <a href="/login" className="flex items-center gap-2 font-medium hover:text-red-600 transition-colors">
+                        <SignOutIcon />
+                        Sign out
+                    </a>
+                </div>
             </div>
-            <div className="flex items-center gap-6 text-gray-600">
-                <button className="hover:text-gray-900 transition-colors"><RefreshIcon /></button>
-                <button className="hover:text-gray-900 transition-colors"><SettingsIcon /></button>
-                {/* In a real app, this would trigger a sign-out function */}
-                <a href="/login" className="flex items-center gap-2 font-medium hover:text-red-600 transition-colors">
-                    <SignOutIcon />
-                    Sign out
-                </a>
-            </div>
+            <nav className="w-full">
+                <div className="border-2 border-black rounded-full p-1 mx-auto w-full max-w-screen-xl">
+                    <div className="overflow-x-auto scrollbar-hide ">
+                        <div className="flex border-2 border-gray-800 rounded-full overflow-x-auto whitespace-nowrap w-full">
+                            {tabs.map((tab, index) => {
+                                const isActive = pathname === tab.href;
+                                return (
+                                    <Link
+                                        key={tab.name}
+                                        href={tab.href}
+                                        className={`flex-1 min-w-[120px] text-center px-6 py-3 font-medium text-sm transition
+                                            ${isActive
+                                                ? 'bg-[#5DA39E] text-white'
+                                                : 'bg-white text-black hover:bg-gray-100'}
+                                            ${index !== tabs.length - 1 ? 'border-r border-gray-800' : ''}`}
+                                    >
+                                        {tab.name}
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
     );
 }

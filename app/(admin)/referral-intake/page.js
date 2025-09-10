@@ -73,44 +73,7 @@ const AcceptReferralModal = ({ referral, onClose }) => (
     </div>
 );
 
-/**
- * DeclineReferralModal component.
- * A modal for declining a referral, allowing the user to provide a reason and notes.
- * @param {object} props - The component props.
- * @param {object} props.referral - The referral object to be declined.
- * @param {function} props.onClose - Function to call when the modal is closed.
- * @returns {JSX.Element} A modal dialog for declining a referral.
- */
-const DeclineReferralModal = ({ referral, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
-        <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
-            <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-gray-800">Decline Referral for {referral.clientName}</h2>
-                <button onClick={onClose} className="text-gray-500 hover:text-gray-800"><CloseIcon/></button>
-            </div>
-            <form className="space-y-4">
-                <div>
-                    <label htmlFor="declineReason" className="block text-sm font-medium text-gray-700">Reason for Decline</label>
-                    <select id="declineReason" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg bg-white">
-                        <option>Select Reason...</option>
-                        <option>Outside of scope</option>
-                        <option>Client not reachable</option>
-                        <option>Duplicate referral</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="declineNotes" className="block text-sm font-medium text-gray-700">Notes</label>
-                    <textarea id="declineNotes" rows="3" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg" placeholder="Please provide a brief explanation..."></textarea>
-                </div>
-                <div className="flex justify-end gap-4 pt-4">
-                    <button type="button" onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Cancel</button>
-                    <button type="submit" className="px-6 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">Decline Referral</button>
-                </div>
-            </form>
-        </div>
-    </div>
-);
+
 
 const DeclineReferralModal = ({ referral, onClose }) => (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">

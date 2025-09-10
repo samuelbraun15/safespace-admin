@@ -4,8 +4,6 @@
 // Import the AdminHeader component, which displays the application logo and navigation links.
 import AdminHeader from '@/components/AdminHeader';
 // Import the AdminNav component, which provides the main navigation for the admin dashboard.
-import AdminNav from '@/components/AdminNav';
-
 // Define the AdminLayout component.
 // This component receives 'children' as a prop, representing the content of the current admin page.
 export default function AdminLayout({ children }) {
@@ -15,9 +13,7 @@ export default function AdminLayout({ children }) {
     <div className="min-h-screen bg-slate-50 font-sans text-gray-800 flex flex-col">
       {/* Renders the administrative header at the top of the page. */}
       <AdminHeader />
-      {/* Renders the administrative navigation bar below the header. */}
-      <AdminNav />
-      {/* Main content area. It grows to fill available space and has padding. */}
+      {/* Main content area. It grows to fill available available space and has padding. */}
       <main className="flex-grow p-8">
         {/* Renders the specific content of the current admin page. */}
         {children}
