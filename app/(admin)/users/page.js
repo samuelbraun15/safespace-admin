@@ -126,24 +126,24 @@ export default function UsersPage() {
                 </div>
 
                 <div className="overflow-x-auto">
-                    <table className="min-w-full">
+                    <table className="min-w-full border border-gray-600 rounded-lg">
                         <thead >
-                            <tr className="border-b border-gray-200">
+                            <tr className="border border-gray-600">
                                 {['ID', 'First Name', 'Last Name', 'Email Address', 'Last Login', 'Created At', 'Status', ''].map(header => (
-                                    <th key={header} className="px-6 py-3 text-left text-xs font-bold text-teal-800 uppercase tracking-wider bg-teal-50">{header}</th>
+                                    <th key={header} className="px-6 py-3 text-left border text-xs font-bold bg-[#b8dfda] text-teal-800 uppercase tracking-wider">{header}</th>
                                 ))}
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {filteredUsers.map(user => (
-                                <tr key={user.id} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{user.firstName}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{user.lastName}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.lastLogin}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.createdAt}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                <tr key={user.id} className="  border border-gray-600 hover:bg-gray-200">
+                                    <td className="px-6 py-4 whitespace-nowrap border text-sm font-medium text-gray-900">{user.id}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap border text-sm text-gray-800">{user.firstName}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap border text-sm text-gray-800">{user.lastName}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap border text-sm text-gray-500">{user.email}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap border text-sm text-gray-500">{user.lastLogin}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap border text-sm text-gray-500">{user.createdAt}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap border text-sm">
                                         <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{user.status}</span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-center relative">

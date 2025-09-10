@@ -1,37 +1,45 @@
 'use client';
-import React from 'react';
+ 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-export default function AdminNav() {
-    const pathname = usePathname();
-    const navLinks = [
-        { name: 'Overview', href: '/overview' },
-        { name: 'Users', href: '/users' },
-        { name: 'Referral Intake', href: '/referral-intake' },
-        { name: 'Referral Tracking', href: '/referral-tracking' },
-        { name: 'System Monitoring', href: '/system-monitoring' },
-        { name: 'Audit & Compliance', href: '/audit-compliance' },
-        { name: 'Reports & Analytics', href: '/reports-analytics' },
-    ];
-
-    return (
-        <div className="bg-white p-2 border-b-2 border-t-2 border-gray-200">
-            <nav className="p-1 border border-gray-300 rounded-full flex items-center justify-start max-w-max">
-                {navLinks.map((link) => {
-                    const isActive = pathname === link.href;
-                    return (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-in-out
-                                ${isActive ? 'bg-teal-100 text-teal-800 shadow-inner' : 'text-gray-600 hover:bg-gray-100'}`}
-                        >
-                            {link.name}
-                        </Link>
-                    );
-                })}
-            </nav>
+ 
+const tabs = [
+  { name: 'Overview', href: '/overview' },
+  { name: 'Users', href: '/users' },
+  { name: 'Referral Intake', href: '/referral-intake' },
+  { name: 'Referral Tracking', href: '/referral-tracking' },
+  { name: 'System Monitoring', href: '/system-monitoring' },
+  { name: 'Audit Compliance', href: '/audit-compliance' },
+  { name: 'Reports & Analytics', href: '/reports-analytics' }
+];
+ 
+export default function DashboardTabs() {
+  const pathname = usePathname();
+ 
+  return (
+    <nav className="w-full mt-6">
+      <div className="border-2 border-black rounded-full p-1 mx-auto w-full max-w-screen-xl">
+        <div className="overflow-x-auto scrollbar-hide ">
+          <div className="flex border-2 border-gray-800 rounded-full overflow-x-auto whitespace-nowrap w-full">
+            {tabs.map((tab, index) => {
+              const isActive = pathname === tab.href;
+              return (
+                <Link
+                  key={tab.name}
+                  href={tab.href}
+                  className={`flex-1 min-w-[120px] text-center px-6 py-3 font-medium text-sm transition
+                    ${isActive
+                      ? 'bg-[#5DA39E] text-white'
+                      : 'bg-white text-black hover:bg-gray-100'}
+                    ${index !== tabs.length - 1 ? 'border-r border-gray-800' : ''}`}
+                >
+                  {tab.name}
+                </Link>
+              );
+            })}
+          </div>
         </div>
-    );
-};
+      </div>
+    </nav>
+  );
+}

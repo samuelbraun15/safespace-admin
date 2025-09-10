@@ -122,7 +122,7 @@ export default function OverviewPage() {
                 </div>
 
                 {/* System Health */}
-                <div className="bg-teal-50/50 border border-teal-100 p-6 rounded-2xl">
+                <div className="bg-[#86c8bf] border border-teal-500 p-6 rounded-2xl">
                     <h2 className="font-bold text-lg text-gray-800 mb-4">System Health Overview</h2>
                     <div className="flex flex-col md:flex-row gap-6 mb-6">
                         <HealthCard title="Server Status" status="Online" value="99.9% uptime" icon={<ServerIcon />} />
@@ -137,7 +137,7 @@ export default function OverviewPage() {
                 </div>
 
                 {/* Recent Activities */}
-                <div className="bg-gray-50 border border-gray-100 p-6 rounded-2xl">
+                <div className= "bg-[#86c8bf] border border-gray-100 p-6 rounded-2xl">
                     <h2 className="font-bold text-lg text-gray-800 mb-4">Recent Admin Activities</h2>
                     <div className="space-y-4 mb-6">
                         <ActivityItem title="User Created" description="Created a new support worker" time="2025-08-11 14:30:00" />

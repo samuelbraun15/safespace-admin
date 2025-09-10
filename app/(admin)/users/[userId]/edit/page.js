@@ -70,7 +70,7 @@ export default function EditUserPage() {
                 <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
                         <div>
-                            <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700">First Name</label>
+                            <label htmlFor="firstName" className="bg-[#86c8bf] block text-sm font-semibold text-gray-700">First Name</label>
                             <input type="text" id="firstName" name="firstName" value={user.firstName} onChange={handleInputChange} className="mt-1 block w-full p-3 border border-gray-300 rounded-lg"/>
                         </div>
                         <div>
