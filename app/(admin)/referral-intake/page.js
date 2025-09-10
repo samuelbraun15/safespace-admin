@@ -13,10 +13,28 @@ const referrals = [
 ];
 
 // --- ICONS ---
+/**
+ * PlusIcon component.
+ * Renders an SVG icon of a plus sign.
+ * @returns {JSX.Element} An SVG icon.
+ */
 const PlusIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> );
+/**
+ * CloseIcon component.
+ * Renders an SVG icon for a close button.
+ * @returns {JSX.Element} An SVG icon.
+ */
 const CloseIcon = () => ( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> );
 
 // --- MODAL COMPONENTS ---
+/**
+ * AcceptReferralModal component.
+ * A modal for accepting a referral, allowing the user to assign a therapist and set a priority level.
+ * @param {object} props - The component props.
+ * @param {object} props.referral - The referral object to be accepted.
+ * @param {function} props.onClose - Function to call when the modal is closed.
+ * @returns {JSX.Element} A modal dialog for accepting a referral.
+ */
 const AcceptReferralModal = ({ referral, onClose }) => (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
@@ -55,6 +73,14 @@ const AcceptReferralModal = ({ referral, onClose }) => (
     </div>
 );
 
+/**
+ * DeclineReferralModal component.
+ * A modal for declining a referral, allowing the user to provide a reason and notes.
+ * @param {object} props - The component props.
+ * @param {object} props.referral - The referral object to be declined.
+ * @param {function} props.onClose - Function to call when the modal is closed.
+ * @returns {JSX.Element} A modal dialog for declining a referral.
+ */
 const DeclineReferralModal = ({ referral, onClose }) => (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
@@ -86,10 +112,56 @@ const DeclineReferralModal = ({ referral, onClose }) => (
     </div>
 );
 
+const DeclineReferralModal = ({ referral, onClose }) => (
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+        <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-800">Decline Referral for {referral.clientName}</h2>
+                <button onClick={onClose} className="text-gray-500 hover:text-gray-800"><CloseIcon/></button>
+            </div>
+            <form className="space-y-4">
+                <div>
+                    <label htmlFor="declineReason" className="block text-sm font-medium text-gray-700">Reason for Decline</label>
+                    <select id="declineReason" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg bg-white">
+                        <option>Select Reason...</option>
+                        <option>Outside of scope</option>
+                        <option>Client not reachable</option>
+                        <option>Duplicate referral</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="declineNotes" className="block text-sm font-medium text-gray-700">Notes</label>
+                    <textarea id="declineNotes" rows="3" className="mt-1 block w-full p-3 border border-gray-300 rounded-lg" placeholder="Please provide a brief explanation..."></textarea>
+                </div>
+                <div className="flex justify-end gap-4 pt-4">
+                    <button type="button" onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Cancel</button>
+                    <button type="submit" className="px-6 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">Decline Referral</button>
+                </div>
+            </form>
+        </div>
+    </div>
+);
+
+/**
+ * ReferralIntakePage component.
+ * Displays a list of new referrals in a table and provides options to accept or decline them
+ * via modal dialogs. Also includes a link to create a new referral.
+ * @returns {JSX.Element} The referral intake page.
+ */
 export default function ReferralIntakePage() {
     const [modal, setModal] = useState({ type: null, data: null }); // type can be 'accept' or 'decline'
 
+    /**
+     * Opens a modal for accepting or declining a referral.
+     * @param {string} type - The type of modal to open ('accept' or 'decline').
+     * @param {object} referral - The referral data to pass to the modal.
+     */
     const openModal = (type, referral) => setModal({ type, data: referral });
+
+    /**
+     * Closes any open modal.
+     */
     const closeModal = () => setModal({ type: null, data: null });
 
     return (
@@ -137,4 +209,5 @@ export default function ReferralIntakePage() {
         </div>
     );
 }
+
 
