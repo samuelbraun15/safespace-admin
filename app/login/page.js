@@ -60,7 +60,7 @@ export default function LoginPage() {
         )}
       </div>
       <footer className="absolute bottom-0 w-full text-center p-4 text-gray-600 text-sm">
-        2025 SafeSapce. All Right Reserved
+        2025 SafeSpace. All Right Reserved
       </footer>
     </div>
   );

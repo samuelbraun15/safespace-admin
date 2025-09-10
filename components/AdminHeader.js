@@ -1,8 +1,8 @@
 
 import React from 'react';
 import Image from 'next/image';
+import SafeSpaceLogo from './logo/safespace.png';
 
-// --- SVG ICONS ---
 // --- SVG ICONS ---
 const RefreshIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
@@ -19,7 +19,7 @@ export default function AdminHeader() {
   return (
     <header className="bg-white shadow-sm p-4 flex justify-between items-center">
       <div className="flex items-center gap-4">
-        <Image src={require('./logo/safespace.png')} alt="SafeSpace Logo" width={60} height={60} style={{ borderRadius: 8 }} />
+        <Image src={SafeSpaceLogo} alt="SafeSpace Logo" width={60} height={60} style={{ borderRadius: 8 }} />
         <h1 className="text-xl font-semibold text-gray-800">SafeSpace</h1>
       </div>
       <div className="flex items-center gap-6 text-gray-600">

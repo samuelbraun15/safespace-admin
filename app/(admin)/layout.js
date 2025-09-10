@@ -10,7 +10,7 @@ export default function AdminLayout({ children }) {
         {children}
       </main>
       <footer className="w-full text-center p-4 text-sm bg-gray-800 text-white">
-        2025 SafeSapce. All Right Reserved
+        2025 SafeSpace. All Right Reserved
       </footer>
     </div>
   );
